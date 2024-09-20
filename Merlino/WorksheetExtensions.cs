@@ -53,5 +53,36 @@ namespace Merlino
             // Restituisci il valore della cella
             return cell.Value2;
         }
+
+
+        public static void ScrollToRow(this Excel.Worksheet worksheet, int rowIndex)
+        {
+            // Imposta la riga corrente come la prima riga visibile
+            worksheet.Application.ActiveWindow.ScrollRow = rowIndex;
+        }
+
+
+
+        public static void ScrollToRowCentered(this Excel.Worksheet worksheet, int rowIndex)
+        {
+            // Ottieni l'oggetto ActiveWindow che rappresenta la finestra attiva di Excel
+            Excel.Window activeWindow = worksheet.Application.ActiveWindow;
+
+            // Ottieni il numero di righe visibili nella finestra corrente
+            int visibleRows = activeWindow.VisibleRange.Rows.Count;
+
+            // Calcola la riga da scorrere per centrare la riga desiderata
+            int scrollRow = rowIndex - (visibleRows / 2);
+
+            // Assicurati che la riga di scorrimento non sia inferiore a 1 (inizio del foglio)
+            if (scrollRow < 1)
+            {
+                scrollRow = 1;
+            }
+
+            // Imposta la riga calcolata come la riga di scorrimento
+            activeWindow.ScrollRow = scrollRow;
+        }
     }
 }
+

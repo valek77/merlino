@@ -35,9 +35,32 @@ namespace Merlino
             int lastRowIndex = Convert.ToInt32(lastCellArr[2]);
 
 
-            string firstNewCol = ExcelUtils.GetColumNamePlusDelta(lastCellArr[1] ,numColUsed);
+            string firstNewCol = ExcelUtils.GetColumNamePlusDelta(lastCellArr[1] ,2);
+            int firstNewColIndex = ExcelUtils.ColumnLetterToIndex(firstNewCol);
+            //int lastNexColIndex = firstNewColIndex + numColUsed;
+
+            int delta = firstNewColIndex - firstColIndex;
+
+            Cursor.Current = Cursors.WaitCursor;
 
 
+            for (int r = firstRowIndex; r <= lastRowIndex; r++) {
+
+                ws.ScrollToRowCentered(r);
+
+                for (int c = firstColIndex; c <= lastColIndex; c++) {
+                    var tmp = ws.ReadFromCell(r, c); 
+                    ws.WriteToCell(r, c + delta, tmp.ToString().ToLowerInvariant());
+                }
+
+               
+
+ 
+
+            }
+
+            Cursor.Current = Cursors.Default;
+         
             ws.WriteToCell( firstNewCol+"1", "Ciao");
 
         }
