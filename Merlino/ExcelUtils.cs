@@ -52,7 +52,37 @@ namespace Merlino
             return columnIndex;
         }
 
-  
+
+
+        public static string GetRowDataInFormat(Excel.Worksheet worksheet, int rowIndex)
+        {
+            StringBuilder result = new StringBuilder();
+
+            // Ottieni l'intervallo di celle usate nel foglio
+            Excel.Range usedRange = worksheet.UsedRange;
+
+            // Scorri tutte le colonne usate
+            for (int colIndex = 1; colIndex <= usedRange.Columns.Count; colIndex++)
+            {
+                // Ottieni il nome della colonna
+                string columnName = ColumnIndexToLetter(colIndex);
+
+                // Ottieni il valore della cella nella riga specificata
+                Excel.Range cell = worksheet.Cells[rowIndex, colIndex];
+                object cellValue = cell.Value2 ?? ""; // Usa una stringa vuota se la cella è vuota
+
+                // Costruisci la stringa nel formato NomeColonna:ValoreColonna
+                result.AppendFormat("{0}:{1};", columnName, cellValue);
+            }
+
+            // Rimuovi l'ultimo "; " e restituisci la stringa finale
+            if (result.Length > 0)
+            {
+                result.Length -= 2; // Rimuove gli ultimi due caratteri "; "
+            }
+
+            return result.ToString();
+        }
 
         public static string GetColumNamePlusDelta(string columnName,int delta=2)
         {

@@ -14,7 +14,7 @@ namespace Merlino
         public static void WriteToCell(this Excel.Worksheet ws, string cellName, object value)
         {
             // Accedi alla cella specificata dal nome
-            Excel.Range cell = ws.Range[cellName];
+            Excel.Range cell = ws.Range[cellName.ToUpper()];
 
             // Scrivi il valore nella cella
             cell.Value2 = value;
@@ -26,7 +26,7 @@ namespace Merlino
         public static object ReadFromCell(this Excel.Worksheet ws, string cellName)
         {
             // Accedi alla cella specificata dal nome (es. "A1")
-            Excel.Range cell = ws.Range[cellName];
+            Excel.Range cell = ws.Range[cellName.ToUpper()];
 
             // Restituisci il valore della cella
             return cell.Value2;
