@@ -38,6 +38,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnIndovinaCelle = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkUseAi = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtIndirizzo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.txtCognome = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.chkUseAi = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -155,6 +155,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parametri";
             // 
+            // chkUseAi
+            // 
+            this.chkUseAi.AutoSize = true;
+            this.chkUseAi.Location = new System.Drawing.Point(6, 465);
+            this.chkUseAi.Name = "chkUseAi";
+            this.chkUseAi.Size = new System.Drawing.Size(159, 17);
+            this.chkUseAi.TabIndex = 20;
+            this.chkUseAi.Text = "Usa AI per capire contenuto";
+            this.chkUseAi.UseVisualStyleBackColor = true;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -171,6 +181,7 @@
             this.txtIndirizzo.Name = "txtIndirizzo";
             this.txtIndirizzo.Size = new System.Drawing.Size(53, 20);
             this.txtIndirizzo.TabIndex = 18;
+            this.txtIndirizzo.Text = "c";
             // 
             // label8
             // 
@@ -205,6 +216,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(53, 20);
             this.txtNumero.TabIndex = 14;
+            this.txtNumero.Text = "b";
             // 
             // label6
             // 
@@ -222,6 +234,7 @@
             this.txtNomeCognome.Name = "txtNomeCognome";
             this.txtNomeCognome.Size = new System.Drawing.Size(53, 20);
             this.txtNomeCognome.TabIndex = 12;
+            this.txtNomeCognome.Text = "a";
             // 
             // label5
             // 
@@ -256,16 +269,6 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(53, 20);
             this.txtNome.TabIndex = 8;
-            // 
-            // chkUseAi
-            // 
-            this.chkUseAi.AutoSize = true;
-            this.chkUseAi.Location = new System.Drawing.Point(6, 465);
-            this.chkUseAi.Name = "chkUseAi";
-            this.chkUseAi.Size = new System.Drawing.Size(159, 17);
-            this.chkUseAi.TabIndex = 20;
-            this.chkUseAi.Text = "Usa AI per capire contenuto";
-            this.chkUseAi.UseVisualStyleBackColor = true;
             // 
             // MainTaskPane
             // 

@@ -16,6 +16,9 @@ namespace Merlino
             // Accedi alla cella specificata dal nome
             Excel.Range cell = ws.Range[cellName.ToUpper()];
 
+            
+            cell.NumberFormat = "@"; // Imposta il formato della cella su "Testo"
+
             // Scrivi il valore nella cella
             cell.Value2 = value;
         }
@@ -38,10 +41,19 @@ namespace Merlino
         public static void WriteToCell(this Excel.Worksheet ws, int rowIndex, int columnIndex, object value)
         {
             // Accedi alla cella specificata dagli indici di riga e colonna
-            Excel.Range cell = (Excel.Range)ws.Cells[rowIndex, columnIndex];
+            try
+            {
+                Excel.Range cell = (Excel.Range)ws.Cells[rowIndex, columnIndex];
 
-            // Scrivi il valore nella cella
-            cell.Value2 = value;
+                
+                cell.NumberFormat = "@"; // Imposta il formato della cella su "Testo"
+
+                // Scrivi il valore nella cella
+                cell.Value2 = value;
+            }
+            catch (Exception ex) { 
+                Console.WriteLine(ex.Message);
+            }
         }
 
         // Extension method per leggere il valore di una cella utilizzando indici di riga e colonna

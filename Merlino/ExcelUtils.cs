@@ -35,6 +35,7 @@ namespace Merlino
         {
             int columnIndex = 0;
             int multiplier = 1;
+            columnLetter=columnLetter.ToUpper();
 
             // Inizia dalla fine della stringa e scansiona ogni lettera
             for (int i = columnLetter.Length - 1; i >= 0; i--)
