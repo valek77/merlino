@@ -118,8 +118,8 @@ namespace Merlino.AddressParser
             if (string.IsNullOrWhiteSpace(input))
                 return null;
 
-            // Espressione regolare per numeri civici comuni
-            string pattern = @"\b\d+([A-Za-z]{1,2})?(\/[A-Za-z0-9]{1,3})?( ?[bisBISsnSN]{1,3})?\b";
+            // Espressione regolare aggiornata per includere anche "sn" e "snc" in maiuscolo/minuscolo
+            string pattern = @"\b\d+([A-Za-z]{1,2})?(\/[A-Za-z0-9]{1,3})?( ?[bisBISsnSNsncSNC]{1,3})?\b|(?i)\b(sn|snc)\b";
 
             // Cerca la prima occorrenza che corrisponde al pattern
             Match match = Regex.Match(input, pattern);
@@ -132,6 +132,7 @@ namespace Merlino.AddressParser
 
             return null; // Nessun numero civico trovato
         }
+
 
 
         public static string RemoveProvincia(string input)
