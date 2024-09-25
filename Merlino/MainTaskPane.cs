@@ -20,7 +20,7 @@ namespace Merlino
     public partial class MainTaskPane : UserControl
     {
 
-        private string OllamaUrl = "http://localhost:11434/api/chat";
+        Preferences preferences;
         private OllamaClient ollama;
 
         private ComuniCap comuniCap;
@@ -31,8 +31,9 @@ namespace Merlino
         public MainTaskPane()
         {
             InitializeComponent();
+            preferences = Preferences.LoadPreferences();
 
-            ollama = new OllamaClient(OllamaUrl, "gemma2");
+            ollama = new OllamaClient(preferences.OllamaUrl, "gemma2");
 
             addressParser = new AddressParser.AddressParser();
             string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "comuni_cap.xlsx");
@@ -168,7 +169,7 @@ namespace Merlino
                     {
                         comune = addressParser.getComuneFromIndirizzo(indirizzo);
 
-                        if (comune == "")
+                        if (chkIA.Checked &&  comune == "")
                         {
                             comune = await indovinaComuneDaIndirizzo(indirizzo);
                         }

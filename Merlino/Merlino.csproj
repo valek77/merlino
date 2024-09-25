@@ -297,12 +297,15 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="AddressParser\AbbreviationHelper.cs" />
-    <Compile Include="AddressParser\AddressComponents.cs" />
     <Compile Include="AddressParser\AddressParser.cs" />
     <Compile Include="AddressParser\ComuniCap.cs" />
-    <Compile Include="AddressParser\StringExtensions.cs" />
     <Compile Include="ExcelUtils.cs" />
+    <Compile Include="FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -310,10 +313,14 @@
       <DependentUpon>MainTaskPane.cs</DependentUpon>
     </Compile>
     <Compile Include="OllamaClient.cs" />
+    <Compile Include="Preferences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WorksheetExtensions.cs" />
+    <EmbeddedResource Include="FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainTaskPane.resx">
       <DependentUpon>MainTaskPane.cs</DependentUpon>
     </EmbeddedResource>

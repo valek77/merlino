@@ -52,6 +52,7 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtCap = new System.Windows.Forms.TextBox();
+            this.chkIA = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -131,6 +132,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkIA);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.txtCap);
             this.groupBox1.Controls.Add(this.label9);
@@ -276,10 +278,21 @@
             this.txtCap.Size = new System.Drawing.Size(53, 20);
             this.txtCap.TabIndex = 20;
             // 
+            // chkIA
+            // 
+            this.chkIA.AutoSize = true;
+            this.chkIA.Location = new System.Drawing.Point(81, 426);
+            this.chkIA.Name = "chkIA";
+            this.chkIA.Size = new System.Drawing.Size(58, 17);
+            this.chkIA.TabIndex = 22;
+            this.chkIA.Text = "Usa IA";
+            this.chkIA.UseVisualStyleBackColor = true;
+            // 
             // MainTaskPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnPulisci);
             this.Controls.Add(this.pictureBox1);
@@ -319,5 +332,6 @@
         private System.Windows.Forms.TextBox txtComune;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtCap;
+        private System.Windows.Forms.CheckBox chkIA;
     }
 }

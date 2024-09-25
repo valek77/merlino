@@ -26,5 +26,12 @@ namespace Merlino
                 }
             }
         }
+
+        private void brtnOpzioni_Click(object sender, RibbonControlEventArgs e)
+        {
+            FormSettings form = new FormSettings();
+
+            form.ShowDialog();
+        }
     }
 }
