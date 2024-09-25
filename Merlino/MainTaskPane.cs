@@ -21,22 +21,24 @@ namespace Merlino
     {
 
         private string OllamaUrl = "http://localhost:11434/api/chat";
-        private OllamaClient ollama ;
-  
+        private OllamaClient ollama;
+
         private ComuniCap comuniCap;
         private AddressParser.AddressParser addressParser;
 
-       
+
 
         public MainTaskPane()
         {
             InitializeComponent();
 
             ollama = new OllamaClient(OllamaUrl, "gemma2");
-          
-            addressParser = new AddressParser.AddressParser();
 
-         
+            addressParser = new AddressParser.AddressParser();
+            string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "comuni_cap.xlsx");
+            comuniCap = new ComuniCap(filePath);
+
+
         }
 
 
@@ -79,149 +81,167 @@ namespace Merlino
                 {
                     return "Errore"; // Numero con lunghezza non valida
                 }
-            }if (numero.StartsWith("0"))
+            }
+            if (numero.StartsWith("0"))
             {
                 return numero;
             }
             // Se non inizia con "3", consideralo un numero fisso e aggiungi lo "0"
-            else 
+            else
             {
                 return "0" + numero; // Aggiungi lo "0" iniziale
             }
-            
+
         }
 
 
 
 
-private async void btnPulisci_Click(object sender, EventArgs e)
-    {
-        Excel.Worksheet ws = ExcelUtils.getActiveSheet();
-
-        // Prendiamo la prima e l'ultima cella per determinare l'area di lavoro
-        string[] firstCellArr = txtPrimaCella.Text.Split('$');
-        string[] lastCellArr = txtUltimaCella.Text.Split('$');
-
-        // Calcoliamo gli indici di riga corretti
-        int firstRowIndex = Convert.ToInt32(firstCellArr[2]);
-        int lastRowIndex = Convert.ToInt32(lastCellArr[2]);
-
-        // Calcoliamo gli indici di colonna dinamicamente dai textbox
-        int nomeCognomeColIndex = !string.IsNullOrEmpty(txtNomeCognome.Text) ? ExcelUtils.ColumnLetterToIndex(txtNomeCognome.Text) : -1;
-        int nomeColIndex = !string.IsNullOrEmpty(txtNome.Text) ? ExcelUtils.ColumnLetterToIndex(txtNome.Text) : -1;
-        int cognomeColIndex = !string.IsNullOrEmpty(txtCognome.Text) ? ExcelUtils.ColumnLetterToIndex(txtCognome.Text) : -1;
-        int numeroColIndex = !string.IsNullOrEmpty(txtNumero.Text) ? ExcelUtils.ColumnLetterToIndex(txtNumero.Text) : -1;
-        int indirizzoColIndex = !string.IsNullOrEmpty(txtIndirizzo.Text) ? ExcelUtils.ColumnLetterToIndex(txtIndirizzo.Text) : -1;
-        int comuneColIndex = !string.IsNullOrEmpty(txtComune.Text) ? ExcelUtils.ColumnLetterToIndex(txtComune.Text) : -1;
-
-        // Nuova colonna di scrittura
-        string firstNewCol = ExcelUtils.GetColumNamePlusDelta(lastCellArr[1], 2);
-        int firstNewColIndex = ExcelUtils.ColumnLetterToIndex(firstNewCol);
-
-        Cursor.Current = Cursors.WaitCursor;
-
-        int batchSize = 30; // Scriviamo ogni 30 righe
-        List<Task> tasks = new List<Task>();
-
-        // Matrice temporanea per i dati elaborati
-        object[,] processedData = new object[batchSize, 3]; // Tre colonne per NomeCognome, Numero, Comune
-
-        int batchRowStart = firstRowIndex;
-
-        // Iniziamo il cronometro
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
-
-        for (int r = firstRowIndex; r <= lastRowIndex; r++)
+        private async void btnPulisci_Click(object sender, EventArgs e)
         {
-            int currentBatchIndex = (r - firstRowIndex) % batchSize; // Indicizza all'interno del batch
+            Excel.Worksheet ws = ExcelUtils.getActiveSheet();
 
-            string nomeCognome = "", nome = "", cognome = "", numero = "", indirizzo = "", comune = "";
+            // Prendiamo la prima e l'ultima cella per determinare l'area di lavoro
+            string[] firstCellArr = txtPrimaCella.Text.Split('$');
+            string[] lastCellArr = txtUltimaCella.Text.Split('$');
 
-            // Verifica condizionale basata sugli indici di colonna
-            if (nomeCognomeColIndex != -1)
-            {
-                nomeCognome = ws.Cells[r, nomeCognomeColIndex]?.Value2?.ToString().ToUpper();
-            }
-            if (nomeColIndex != -1 && cognomeColIndex != -1)
-            {
-                nome = ws.Cells[r, nomeColIndex]?.Value2?.ToString();
-                cognome = ws.Cells[r, cognomeColIndex]?.Value2?.ToString();
-            }
-            if (numeroColIndex != -1)
-            {
-                numero = ws.Cells[r, numeroColIndex]?.Value2?.ToString();
-                numero = CorreggiNumeroTelefono(numero);
-            }
-            if (indirizzoColIndex != -1)
-            {
-                indirizzo = ws.Cells[r, indirizzoColIndex]?.Value2?.ToString();
-            }
+            // Calcoliamo gli indici di riga corretti
+            int firstRowIndex = Convert.ToInt32(firstCellArr[2]);
+            int lastRowIndex = Convert.ToInt32(lastCellArr[2]);
 
-            // Elaborazione asincrona del comune
-            if (!string.IsNullOrEmpty(indirizzo))
-            {
-                comune = addressParser.getComuneFromIndirizzo(indirizzo);
+            // Calcoliamo gli indici di colonna dinamicamente dai textbox
+            int nomeCognomeColIndex = !string.IsNullOrEmpty(txtNomeCognome.Text) ? ExcelUtils.ColumnLetterToIndex(txtNomeCognome.Text) : -1;
+            int nomeColIndex = !string.IsNullOrEmpty(txtNome.Text) ? ExcelUtils.ColumnLetterToIndex(txtNome.Text) : -1;
+            int cognomeColIndex = !string.IsNullOrEmpty(txtCognome.Text) ? ExcelUtils.ColumnLetterToIndex(txtCognome.Text) : -1;
+            int numeroColIndex = !string.IsNullOrEmpty(txtNumero.Text) ? ExcelUtils.ColumnLetterToIndex(txtNumero.Text) : -1;
+            int indirizzoColIndex = !string.IsNullOrEmpty(txtIndirizzo.Text) ? ExcelUtils.ColumnLetterToIndex(txtIndirizzo.Text) : -1;
+            int comuneColIndex = !string.IsNullOrEmpty(txtComune.Text) ? ExcelUtils.ColumnLetterToIndex(txtComune.Text) : -1;
+            int capColIndex = !string.IsNullOrEmpty(txtCap.Text) ? ExcelUtils.ColumnLetterToIndex(txtCap.Text) : -1;
 
-                if (comune == "")
+            // Nuova colonna di scrittura
+            string firstNewCol = ExcelUtils.GetColumNamePlusDelta(lastCellArr[1], 2);
+            int firstNewColIndex = ExcelUtils.ColumnLetterToIndex(firstNewCol);
+
+            Cursor.Current = Cursors.WaitCursor;
+
+            int batchSize = 30; // Scriviamo ogni 30 righe
+            List<Task> tasks = new List<Task>();
+
+            // Matrice temporanea per i dati elaborati
+            object[,] processedData = new object[batchSize, 3]; // Tre colonne per NomeCognome, Numero, Comune
+
+            int batchRowStart = firstRowIndex;
+
+            // Iniziamo il cronometro
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            for (int r = firstRowIndex; r <= lastRowIndex; r++)
+            {
+                int currentBatchIndex = (r - firstRowIndex) % batchSize; // Indicizza all'interno del batch
+
+                string nomeCognome = "", nome = "", cognome = "", numero = "", indirizzo = "", comune = "";
+
+                // Verifica condizionale basata sugli indici di colonna
+                if (nomeCognomeColIndex != -1)
                 {
-                    comune = await indovinaComuneDaIndirizzo(indirizzo);
+                    nomeCognome = ws.Cells[r, nomeCognomeColIndex]?.Value2?.ToString().ToUpper();
+                }
+
+                if (nomeColIndex != -1 && cognomeColIndex != -1)
+                {
+                    nome = ws.Cells[r, nomeColIndex]?.Value2?.ToString();
+                    cognome = ws.Cells[r, cognomeColIndex]?.Value2?.ToString();
+                }
+
+                if (numeroColIndex != -1)
+                {
+                    numero = ws.Cells[r, numeroColIndex]?.Value2?.ToString();
+                    numero = CorreggiNumeroTelefono(numero);
+                }
+
+                if (indirizzoColIndex != -1)
+                {
+                    indirizzo = ws.Cells[r, indirizzoColIndex]?.Value2?.ToString();
+                    // Elaborazione asincrona del comune
+                    if (!string.IsNullOrEmpty(indirizzo))
+                    {
+                        comune = addressParser.getComuneFromIndirizzo(indirizzo);
+
+                        if (comune == "")
+                        {
+                            comune = await indovinaComuneDaIndirizzo(indirizzo);
+                        }
+                    }
+                }
+
+
+                if ((capColIndex!=-1))
+                {
+                    var cap  = ws.Cells[r, capColIndex]?.Value2?.ToString();
+
+                    List<string> comuni =  comuniCap.GetComuniByCap(cap);
+
+                    if (comuni != null && comuni.Count > 0) {
+                        comune = comuni[0];
+                    }
+                }
+
+
+
+                // Scrittura nei dati processati per il batch
+                processedData[currentBatchIndex, 0] = !string.IsNullOrEmpty(nomeCognome) ? nomeCognome : (nome + " " + cognome)?.ToUpper();
+                processedData[currentBatchIndex, 1] = numero;
+                processedData[currentBatchIndex, 2] = comune.ToUpper();
+
+                // Quando raggiungiamo il batch size o l'ultima riga, scriviamo il batch
+                if (currentBatchIndex == batchSize - 1 || r == lastRowIndex)
+                {
+                    int rowsInBatch = currentBatchIndex + 1; // Quante righe ci sono nel batch attuale
+
+                    // Scriviamo il batch di righe su Excel
+                    Excel.Range destinationRange = ws.Range[ws.Cells[batchRowStart, firstNewColIndex], ws.Cells[batchRowStart + rowsInBatch - 1, firstNewColIndex + 2]];
+                    object[,] batchData = new object[rowsInBatch, 3];
+
+                    // Copiamo i dati nel batch corrente
+                    Array.Copy(processedData, batchData, rowsInBatch * 3);
+
+                    destinationRange.Value2 = batchData;
+
+                    // Aggiorniamo il batchRowStart per il prossimo batch
+                    batchRowStart = r + 1;
+
+                    // Reset della matrice temporanea
+                    processedData = new object[batchSize, 3];
+
+                    ws.ScrollToRowCentered(r);
                 }
             }
 
-            // Scrittura nei dati processati per il batch
-            processedData[currentBatchIndex, 0] = !string.IsNullOrEmpty(nomeCognome) ? nomeCognome : (nome + " " + cognome)?.ToUpper();
-            processedData[currentBatchIndex, 1] = numero;
-            processedData[currentBatchIndex, 2] = comune.ToUpper();
+            // Fermiamo il cronometro
+            stopwatch.Stop();
 
-            // Quando raggiungiamo il batch size o l'ultima riga, scriviamo il batch
-            if (currentBatchIndex == batchSize - 1 || r == lastRowIndex)
-            {
-                int rowsInBatch = currentBatchIndex + 1; // Quante righe ci sono nel batch attuale
+            // Calcoliamo il tempo totale e medio
+            TimeSpan elapsedTime = stopwatch.Elapsed;
+            double averageTimePerRow = elapsedTime.TotalSeconds / (lastRowIndex - firstRowIndex + 1);
 
-                // Scriviamo il batch di righe su Excel
-                Excel.Range destinationRange = ws.Range[ws.Cells[batchRowStart, firstNewColIndex], ws.Cells[batchRowStart + rowsInBatch - 1, firstNewColIndex + 2]];
-                object[,] batchData = new object[rowsInBatch, 3];
+            // Formattiamo il tempo in ore:minuti:secondi
+            string formattedElapsedTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
+                elapsedTime.Hours, elapsedTime.Minutes, elapsedTime.Seconds);
 
-                // Copiamo i dati nel batch corrente
-                Array.Copy(processedData, batchData, rowsInBatch * 3);
+            // Mostra un messaggio con il tempo totale e medio per riga
+            MessageBox.Show($"Elaborazione completata.\nDurata totale: {formattedElapsedTime}\nTempo medio per riga: {averageTimePerRow:F2} secondi", "Informazione", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                destinationRange.Value2 = batchData;
-
-                // Aggiorniamo il batchRowStart per il prossimo batch
-                batchRowStart = r + 1;
-
-                // Reset della matrice temporanea
-                processedData = new object[batchSize, 3];
-
-                ws.ScrollToRowCentered(r);
-            }
+            Cursor.Current = Cursors.Default;
         }
 
-        // Fermiamo il cronometro
-        stopwatch.Stop();
-
-        // Calcoliamo il tempo totale e medio
-        TimeSpan elapsedTime = stopwatch.Elapsed;
-        double averageTimePerRow = elapsedTime.TotalSeconds / (lastRowIndex - firstRowIndex + 1);
-
-        // Formattiamo il tempo in ore:minuti:secondi
-        string formattedElapsedTime = string.Format("{0:D2}:{1:D2}:{2:D2}",
-            elapsedTime.Hours, elapsedTime.Minutes, elapsedTime.Seconds);
-
-        // Mostra un messaggio con il tempo totale e medio per riga
-        MessageBox.Show($"Elaborazione completata.\nDurata totale: {formattedElapsedTime}\nTempo medio per riga: {averageTimePerRow:F2} secondi", "Informazione", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        Cursor.Current = Cursors.Default;
-    }
 
 
 
 
 
 
-
-    private async Task<string> indovinaComuneDaIndirizzo(string indirizzo)
+        private async Task<string> indovinaComuneDaIndirizzo(string indirizzo)
         {
             string msg = "A partire da questo indirizzo riesci a capire di quale comune si tratta? Rispondi con il solo comune, senza aggiungere altro.\n" + indirizzo;
             ApiResponse result = await ollama.SendMessages(msg);
@@ -239,7 +259,7 @@ private async void btnPulisci_Click(object sender, EventArgs e)
             txtUltimaCella.Text = cells.lastCell.Address;
 
 
-            if (chkUseAi.Checked)
+          /*  if (chkUseAi.Checked)
             {
                 string data = ExcelUtils.GetRowDataInFormat(ws, 2);
 
@@ -268,7 +288,7 @@ Restituisci solo le informazioni nel seguente formato senza aggiungere altro: No
                 UpdateControlSafely(txtNumero, response[4].Split(':')[1]);
                 UpdateControlSafely(txtComune, response[5].Split(':')[1]);
                 // MessageBox.Show(result.message.Content);
-            }
+            }/*/
 
         }
 

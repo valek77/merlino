@@ -38,7 +38,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnIndovinaCelle = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkUseAi = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtIndirizzo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -51,6 +50,8 @@
             this.txtCognome = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtCap = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -78,7 +79,7 @@
             // btnPulisci
             // 
             this.btnPulisci.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPulisci.Location = new System.Drawing.Point(72, 820);
+            this.btnPulisci.Location = new System.Drawing.Point(75, 850);
             this.btnPulisci.Name = "btnPulisci";
             this.btnPulisci.Size = new System.Drawing.Size(75, 34);
             this.btnPulisci.TabIndex = 2;
@@ -120,7 +121,7 @@
             // 
             // btnIndovinaCelle
             // 
-            this.btnIndovinaCelle.Location = new System.Drawing.Point(22, 510);
+            this.btnIndovinaCelle.Location = new System.Drawing.Point(19, 559);
             this.btnIndovinaCelle.Name = "btnIndovinaCelle";
             this.btnIndovinaCelle.Size = new System.Drawing.Size(100, 23);
             this.btnIndovinaCelle.TabIndex = 7;
@@ -130,7 +131,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.chkUseAi);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.txtCap);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtIndirizzo);
             this.groupBox1.Controls.Add(this.label8);
@@ -150,20 +152,10 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(28, 241);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(170, 555);
+            this.groupBox1.Size = new System.Drawing.Size(170, 603);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parametri";
-            // 
-            // chkUseAi
-            // 
-            this.chkUseAi.AutoSize = true;
-            this.chkUseAi.Location = new System.Drawing.Point(6, 465);
-            this.chkUseAi.Name = "chkUseAi";
-            this.chkUseAi.Size = new System.Drawing.Size(159, 17);
-            this.chkUseAi.TabIndex = 20;
-            this.chkUseAi.Text = "Usa AI per capire contenuto";
-            this.chkUseAi.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -181,7 +173,6 @@
             this.txtIndirizzo.Name = "txtIndirizzo";
             this.txtIndirizzo.Size = new System.Drawing.Size(53, 20);
             this.txtIndirizzo.TabIndex = 18;
-            this.txtIndirizzo.Text = "c";
             // 
             // label8
             // 
@@ -216,7 +207,6 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(53, 20);
             this.txtNumero.TabIndex = 14;
-            this.txtNumero.Text = "b";
             // 
             // label6
             // 
@@ -234,7 +224,6 @@
             this.txtNomeCognome.Name = "txtNomeCognome";
             this.txtNomeCognome.Size = new System.Drawing.Size(53, 20);
             this.txtNomeCognome.TabIndex = 12;
-            this.txtNomeCognome.Text = "a";
             // 
             // label5
             // 
@@ -270,6 +259,23 @@
             this.txtNome.Size = new System.Drawing.Size(53, 20);
             this.txtNome.TabIndex = 8;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(22, 464);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(68, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Colonna Cap";
+            // 
+            // txtCap
+            // 
+            this.txtCap.Location = new System.Drawing.Point(22, 483);
+            this.txtCap.MaxLength = 1;
+            this.txtCap.Name = "txtCap";
+            this.txtCap.Size = new System.Drawing.Size(53, 20);
+            this.txtCap.TabIndex = 20;
+            // 
             // MainTaskPane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,7 +285,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Name = "MainTaskPane";
-            this.Size = new System.Drawing.Size(223, 882);
+            this.Size = new System.Drawing.Size(223, 907);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -311,6 +317,7 @@
         private System.Windows.Forms.TextBox txtIndirizzo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtComune;
-        private System.Windows.Forms.CheckBox chkUseAi;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtCap;
     }
 }
