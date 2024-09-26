@@ -22,6 +22,7 @@ namespace Merlino
 
         Preferences preferences;
         private OllamaClient ollama;
+      
 
         private ComuniCap comuniCap;
         private AddressParser.AddressParser addressParser;
@@ -34,6 +35,8 @@ namespace Merlino
             preferences = Preferences.LoadPreferences();
 
             ollama = new OllamaClient(preferences.OllamaUrl, "gemma2");
+
+        
 
             addressParser = new AddressParser.AddressParser();
             string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "comuni_cap.xlsx");

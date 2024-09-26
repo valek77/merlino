@@ -67,6 +67,22 @@ namespace Merlino
         }
 
 
+
+
+
+        public static void DeleteRow(this Excel.Worksheet ws, int rowNum)
+        {
+            // Accedi alla cella specificata dal nome (es. "A1")
+            Excel.Range row = ws.Rows[rowNum];
+
+            row.Delete();
+        }
+
+
+
+
+
+
         public static void ScrollToRow(this Excel.Worksheet worksheet, int rowIndex)
         {
             // Imposta la riga corrente come la prima riga visibile

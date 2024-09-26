@@ -299,6 +299,7 @@
   <ItemGroup>
     <Compile Include="AddressParser\AddressParser.cs" />
     <Compile Include="AddressParser\ComuniCap.cs" />
+    <Compile Include="BPGClient.cs" />
     <Compile Include="ExcelUtils.cs" />
     <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
@@ -306,6 +307,7 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="FubRemover.cs" />
     <Compile Include="MainTaskPane.cs">
       <SubType>UserControl</SubType>
     </Compile>

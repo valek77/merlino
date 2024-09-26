@@ -39,6 +39,8 @@
             this.grpMerlino = this.Factory.CreateRibbonGroup();
             this.btnOpen = this.Factory.CreateRibbonButton();
             this.brtnOpzioni = this.Factory.CreateRibbonButton();
+            this.separator1 = this.Factory.CreateRibbonSeparator();
+            this.btnFilter = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.grpMerlino.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +55,8 @@
             // grpMerlino
             // 
             this.grpMerlino.Items.Add(this.btnOpen);
+            this.grpMerlino.Items.Add(this.btnFilter);
+            this.grpMerlino.Items.Add(this.separator1);
             this.grpMerlino.Items.Add(this.brtnOpzioni);
             this.grpMerlino.Name = "grpMerlino";
             // 
@@ -74,6 +78,19 @@
             this.brtnOpzioni.ShowImage = true;
             this.brtnOpzioni.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.brtnOpzioni_Click);
             // 
+            // separator1
+            // 
+            this.separator1.Name = "separator1";
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.btnFilter.Image = ((System.Drawing.Image)(resources.GetObject("btnFilter.Image")));
+            this.btnFilter.Label = "Filtra RPO";
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.ShowImage = true;
+            this.btnFilter.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnFilter_Click);
+            // 
             // RibbonMenu
             // 
             this.Name = "RibbonMenu";
@@ -94,6 +111,8 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup grpMerlino;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton btnOpen;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton brtnOpzioni;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton btnFilter;
+        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator1;
     }
 
     partial class ThisRibbonCollection
