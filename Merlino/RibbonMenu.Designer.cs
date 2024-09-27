@@ -38,9 +38,9 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.grpMerlino = this.Factory.CreateRibbonGroup();
             this.btnOpen = this.Factory.CreateRibbonButton();
-            this.brtnOpzioni = this.Factory.CreateRibbonButton();
-            this.separator1 = this.Factory.CreateRibbonSeparator();
             this.btnFilter = this.Factory.CreateRibbonButton();
+            this.separator1 = this.Factory.CreateRibbonSeparator();
+            this.brtnOpzioni = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.grpMerlino.SuspendLayout();
             this.SuspendLayout();
@@ -69,19 +69,6 @@
             this.btnOpen.ShowImage = true;
             this.btnOpen.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.button1_Click);
             // 
-            // brtnOpzioni
-            // 
-            this.brtnOpzioni.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.brtnOpzioni.Image = ((System.Drawing.Image)(resources.GetObject("brtnOpzioni.Image")));
-            this.brtnOpzioni.Label = "Opzioni";
-            this.brtnOpzioni.Name = "brtnOpzioni";
-            this.brtnOpzioni.ShowImage = true;
-            this.brtnOpzioni.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.brtnOpzioni_Click);
-            // 
-            // separator1
-            // 
-            this.separator1.Name = "separator1";
-            // 
             // btnFilter
             // 
             this.btnFilter.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -90,6 +77,19 @@
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.ShowImage = true;
             this.btnFilter.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.btnFilter_Click);
+            // 
+            // separator1
+            // 
+            this.separator1.Name = "separator1";
+            // 
+            // brtnOpzioni
+            // 
+            this.brtnOpzioni.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.brtnOpzioni.Image = ((System.Drawing.Image)(resources.GetObject("brtnOpzioni.Image")));
+            this.brtnOpzioni.Label = "Opzioni";
+            this.brtnOpzioni.Name = "brtnOpzioni";
+            this.brtnOpzioni.ShowImage = true;
+            this.brtnOpzioni.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.brtnOpzioni_Click);
             // 
             // RibbonMenu
             // 

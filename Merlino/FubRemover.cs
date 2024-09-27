@@ -26,7 +26,8 @@ namespace Merlino
             ws.WriteToCell("D1", "In connessione a BlackPhoneGuard");
             var token = await bpg.Login();
             ws.WriteToCell("D1", "Connesso. Attendere prego");
-            //ws.DeleteRow(2);
+
+            
             var cells = ExcelUtils.GuessFirstAndLastUsedCell();
             string[] lastCellArr = cells.lastCell.Address.Split('$');
             int lastRowIndex = Convert.ToInt32(lastCellArr[2]);
@@ -64,10 +65,11 @@ namespace Merlino
             foreach (var rowNumber in toBeDeletedInt) { 
                 ws.DeleteRow(rowNumber);
             }
-
-            bpg.Logout();
-
             MessageBox.Show("Cancellate " + toBeDeleted.Count() + " righe");
+
+           // bpg.Logout();
+
+            
 
         }
 

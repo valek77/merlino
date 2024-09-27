@@ -63,7 +63,7 @@ namespace Merlino
         public async void Logout()
         {
             var request = new HttpRequestMessage(HttpMethod.Post, prefs.BpgUrl);
-
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authToken);
             var response = await client.PostAsync(prefs.BpgUrl + "/api/logout", null);
             response.EnsureSuccessStatusCode();
         }
