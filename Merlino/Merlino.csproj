@@ -36,7 +36,7 @@
     <PublishUrl>C:\Deploy\Merlino\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.1</ApplicationVersion>
+    <ApplicationVersion>1.0.0.10</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
@@ -339,9 +339,12 @@
       <DependentUpon>RibbonMenu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="comuni_cap.xlsx">
+    <Content Include="comuni_cap.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <None Include="Merlino.pfx" />
+    <None Include="Merlino_1_TemporaryKey.pfx" />
+    <None Include="Merlino_2_TemporaryKey.pfx" />
     <None Include="Merlino_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -380,10 +383,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Merlino_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Merlino_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>ED44093E055B50B8BFA752BA9730F6C966BBEA52</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>A8C399D55526EEE3EF4662BA02DA67A8B867781F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

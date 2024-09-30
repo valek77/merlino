@@ -6,18 +6,37 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using System.IO;
 
 namespace Merlino
 {
     public partial class ThisAddIn
     {
+
+        public static void WriteLog(string message)
+        {
+            string logFilePath = @"C:\tmp\MerlinoLog.txt";
+            using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            {
+                writer.WriteLine($"{DateTime.Now}: {message}");
+            }
+        }
+
         private Microsoft.Office.Tools.CustomTaskPane taskPane;
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            MainTaskPane main = new MainTaskPane();
+            try
+            {
+           //     WriteLog("Init");
+                MainTaskPane main = new MainTaskPane();
 
-            taskPane = this.CustomTaskPanes.Add(main, "Merlino");
-            taskPane.Visible = false;
+                taskPane = this.CustomTaskPanes.Add(main, "Merlino");
+                taskPane.Visible = false;
+          //      WriteLog("Plugin inzializzato");
+            }
+            catch (Exception ex) {
+          //      WriteLog("Eccezione"+ ex.Message);
+            }
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

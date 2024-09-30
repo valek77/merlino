@@ -39,7 +39,7 @@ namespace Merlino
 
         private void btnNome_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(txtOllamaUrl.Text);
+          //  MessageBox.Show(txtOllamaUrl.Text);
 
             this.Close();
         }
