@@ -36,10 +36,20 @@ namespace Merlino
 
 
             FilterInput filterInput = new FilterInput();
-            for (int row = 2; row <= lastRowIndex; row++)
+            int row = 0;
+            for ( row = 2; row <= lastRowIndex; row++)
             {
                 NumberRow numberRow = new NumberRow();
                 numberRow.row = "" + row;
+                var cell = ws.ReadFromCell("B" + row);
+                if (cell == null) {
+                    List<string> resp = await bpg.FilterNumbers(filterInput);
+                    toBeDeleted.AddRange(resp);
+                    filterInput = new FilterInput();
+                    ws.WriteToCell("D1", "Trovate " + toBeDeleted.Count + " righe da cancellare su " + row + " righe eleborate");
+                    break;
+                }
+
                 numberRow.number = ws.ReadFromCell("B" + row).ToString();
                 filterInput.number_list.Add(numberRow);
 
@@ -48,7 +58,7 @@ namespace Merlino
                     List<string> resp = await bpg.FilterNumbers(filterInput);
                     toBeDeleted.AddRange(resp);
                     filterInput = new FilterInput();
-                    ws.WriteToCell("D1", "Trovate " + toBeDeleted.Count + " righe da cancellare");
+                    ws.WriteToCell("D1", "Trovate " + toBeDeleted.Count + " righe da cancellare su "+row+" righe eleborate");
                 }
 
             }
@@ -56,14 +66,22 @@ namespace Merlino
             if (filterInput.number_list.Count > 0) {
                 List<string> resp = await bpg.FilterNumbers(filterInput);
                 toBeDeleted.AddRange(resp);
-                ws.WriteToCell("D1", "Trovate " + toBeDeleted.Count + " righe da cancellare");
+                ws.WriteToCell("D1", "Trovate " + toBeDeleted.Count + " righe da cancellare su " + row + " righe eleborate");
             }
 
             var toBeDeletedInt = toBeDeleted.Select(x=>Convert.ToInt32(x)).OrderByDescending(x=>x).ToList();
 
 
-            foreach (var rowNumber in toBeDeletedInt) { 
+            //foreach (var rowNumber in toBeDeletedInt) {
+            int totRows = toBeDeletedInt.Count;
+           for (int i = 0; i<totRows;i++)
+            {
+                int rowNumber = toBeDeletedInt.ElementAt(i);
                 ws.DeleteRow(rowNumber);
+
+                if (i % 10 == 0) {
+                    ws.WriteToCell("D1", "Cancellate " + i + " righe  su " + totRows + " righe");
+                }
             }
             MessageBox.Show("Cancellate " + toBeDeleted.Count() + " righe");
 

@@ -66,7 +66,7 @@
             this.label1.Size = new System.Drawing.Size(143, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "Merlino";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+          
             // 
             // pictureBox1
             // 
@@ -77,7 +77,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+          
             // 
             // btnPulisci
             // 
@@ -96,7 +96,7 @@
             this.txtPrimaCella.Name = "txtPrimaCella";
             this.txtPrimaCella.Size = new System.Drawing.Size(100, 20);
             this.txtPrimaCella.TabIndex = 3;
-            this.txtPrimaCella.TextChanged += new System.EventHandler(this.txtPrimaCella_TextChanged);
+          
             // 
             // txtUltimaCella
             // 
@@ -104,7 +104,7 @@
             this.txtUltimaCella.Name = "txtUltimaCella";
             this.txtUltimaCella.Size = new System.Drawing.Size(100, 20);
             this.txtUltimaCella.TabIndex = 4;
-            this.txtUltimaCella.TextChanged += new System.EventHandler(this.txtUltimaCella_TextChanged);
+          
             // 
             // label2
             // 
@@ -114,7 +114,7 @@
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Prima Cella";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+          
             // 
             // label3
             // 
@@ -124,7 +124,7 @@
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Ultima Cella";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+         
             // 
             // btnIndovinaCelle
             // 
@@ -164,7 +164,7 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parametri";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            
             // 
             // chkIA
             // 
@@ -175,7 +175,7 @@
             this.chkIA.TabIndex = 22;
             this.chkIA.Text = "Usa IA";
             this.chkIA.UseVisualStyleBackColor = true;
-            this.chkIA.CheckedChanged += new System.EventHandler(this.chkIA_CheckedChanged);
+            
             // 
             // label10
             // 
@@ -185,7 +185,7 @@
             this.label10.Size = new System.Drawing.Size(68, 13);
             this.label10.TabIndex = 21;
             this.label10.Text = "Colonna Cap";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
+            
             // 
             // txtCap
             // 
@@ -194,7 +194,7 @@
             this.txtCap.Name = "txtCap";
             this.txtCap.Size = new System.Drawing.Size(53, 20);
             this.txtCap.TabIndex = 20;
-            this.txtCap.TextChanged += new System.EventHandler(this.txtCap_TextChanged);
+            
             // 
             // label9
             // 
@@ -204,7 +204,7 @@
             this.label9.Size = new System.Drawing.Size(87, 13);
             this.label9.TabIndex = 19;
             this.label9.Text = "Colonna Indirizzo";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
+            
             // 
             // txtIndirizzo
             // 
@@ -213,7 +213,7 @@
             this.txtIndirizzo.Name = "txtIndirizzo";
             this.txtIndirizzo.Size = new System.Drawing.Size(53, 20);
             this.txtIndirizzo.TabIndex = 18;
-            this.txtIndirizzo.TextChanged += new System.EventHandler(this.txtIndirizzo_TextChanged);
+            
             // 
             // label8
             // 
@@ -223,7 +223,7 @@
             this.label8.Size = new System.Drawing.Size(88, 13);
             this.label8.TabIndex = 17;
             this.label8.Text = "Colonna Comune";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
+            
             // 
             // txtComune
             // 
@@ -232,7 +232,7 @@
             this.txtComune.Name = "txtComune";
             this.txtComune.Size = new System.Drawing.Size(53, 20);
             this.txtComune.TabIndex = 16;
-            this.txtComune.TextChanged += new System.EventHandler(this.txtComune_TextChanged);
+            
             // 
             // label7
             // 
@@ -242,7 +242,7 @@
             this.label7.Size = new System.Drawing.Size(104, 13);
             this.label7.TabIndex = 15;
             this.label7.Text = "Colonna Numero Tel";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            
             // 
             // txtNumero
             // 
@@ -251,7 +251,7 @@
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(53, 20);
             this.txtNumero.TabIndex = 14;
-            this.txtNumero.TextChanged += new System.EventHandler(this.txtNumero_TextChanged);
+            
             // 
             // label6
             // 
@@ -261,7 +261,7 @@
             this.label6.Size = new System.Drawing.Size(131, 13);
             this.label6.TabIndex = 13;
             this.label6.Text = "Colonna Nome - Cognome";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            
             // 
             // txtNomeCognome
             // 
@@ -270,7 +270,7 @@
             this.txtNomeCognome.Name = "txtNomeCognome";
             this.txtNomeCognome.Size = new System.Drawing.Size(53, 20);
             this.txtNomeCognome.TabIndex = 12;
-            this.txtNomeCognome.TextChanged += new System.EventHandler(this.txtNomeCognome_TextChanged);
+            
             // 
             // label5
             // 
@@ -280,7 +280,7 @@
             this.label5.Size = new System.Drawing.Size(94, 13);
             this.label5.TabIndex = 11;
             this.label5.Text = "Colonna Cognome";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
+            
             // 
             // txtCognome
             // 
@@ -289,7 +289,7 @@
             this.txtCognome.Name = "txtCognome";
             this.txtCognome.Size = new System.Drawing.Size(53, 20);
             this.txtCognome.TabIndex = 10;
-            this.txtCognome.TextChanged += new System.EventHandler(this.txtCognome_TextChanged);
+            
             // 
             // label4
             // 
@@ -299,7 +299,7 @@
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 9;
             this.label4.Text = "Colonna Nome";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            
             // 
             // txtNome
             // 
@@ -308,7 +308,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(53, 20);
             this.txtNome.TabIndex = 8;
-            this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            
             // 
             // MainTaskPane
             // 

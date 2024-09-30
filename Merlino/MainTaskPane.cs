@@ -179,6 +179,12 @@ namespace Merlino
                     }
                 }
 
+                if (comuneColIndex != -1) { 
+                    comune = ws.Cells[r, comuneColIndex]?.Value2?.ToString().ToUpper();
+
+                    if (comune == null) comune = "";
+                }
+
 
                 if ((capColIndex!=-1))
                 {

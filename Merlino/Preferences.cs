@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Policy;
 
 namespace Merlino
 {
@@ -20,6 +21,9 @@ namespace Merlino
 
         public static void SavePreferences(Preferences preferences)
         {
+
+            preferences.BpgUrl  = preferences.BpgUrl.EndsWith("/") ? preferences.BpgUrl.Substring(0, preferences.BpgUrl.Length - 1) : preferences.BpgUrl;
+
             // Converti l'oggetto preferences in JSON
             string json = JsonConvert.SerializeObject(preferences, Formatting.Indented);
 
