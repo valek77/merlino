@@ -209,6 +209,9 @@ namespace Merlino
                 {
                     int rowsInBatch = currentBatchIndex + 1; // Quante righe ci sono nel batch attuale
 
+                    Excel.Range numberColumnRange = ws.Range[ws.Cells[batchRowStart, firstNewColIndex + 1], ws.Cells[batchRowStart + rowsInBatch - 1, firstNewColIndex + 1]];
+                    numberColumnRange.NumberFormat = "@"; // Imposta come testo
+
                     // Scriviamo il batch di righe su Excel
                     Excel.Range destinationRange = ws.Range[ws.Cells[batchRowStart, firstNewColIndex], ws.Cells[batchRowStart + rowsInBatch - 1, firstNewColIndex + 2]];
                     object[,] batchData = new object[rowsInBatch, 3];

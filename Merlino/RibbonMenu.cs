@@ -10,6 +10,8 @@ namespace Merlino
     public partial class RibbonMenu
     {
         private Microsoft.Office.Tools.CustomTaskPane myTaskPane;
+
+        
         private void RibbonMenu_Load(object sender, RibbonUIEventArgs e)
         {
             myTaskPane = Globals.ThisAddIn.CustomTaskPanes[0];
