@@ -14,20 +14,14 @@ namespace Merlino
         
         private void RibbonMenu_Load(object sender, RibbonUIEventArgs e)
         {
-            myTaskPane = Globals.ThisAddIn.CustomTaskPanes[0];
+         
         }
 
         private void button1_Click(object sender, RibbonControlEventArgs e)
         {
-            if (myTaskPane != null)
-            {
-                // Controlla se il Task Pane è chiuso
-                if (!myTaskPane.Visible)
-                {
-                    // Riapri il Task Pane
-                    myTaskPane.Visible = true;
-                }
-            }
+            MainForm mf = new MainForm();
+
+            mf.ShowDialog();
         }
 
         private void brtnOpzioni_Click(object sender, RibbonControlEventArgs e)
