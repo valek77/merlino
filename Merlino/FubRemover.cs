@@ -23,10 +23,16 @@ namespace Merlino
         public async void CleanSheet()
         {
             Excel.Worksheet ws = ExcelUtils.getActiveSheet();
-            ws.WriteToCell("D1", "In connessione a BlackPhoneGuard");
-            var token = await bpg.Login();
-            ws.WriteToCell("D1", "Connesso. Attendere prego");
-
+            try
+            {
+                ws.WriteToCell("D1", "In connessione a BlackPhoneGuard");
+                var token = await bpg.Login();
+                ws.WriteToCell("D1", "Connesso. Attendere prego");
+            }
+            catch (Exception ex) {
+                ws.WriteToCell("D1", ex.Message);
+                return;
+            }
             
             var cells = ExcelUtils.GuessFirstAndLastUsedCell();
             string[] lastCellArr = cells.lastCell.Address.Split('$');
@@ -41,7 +47,12 @@ namespace Merlino
             {
                 NumberRow numberRow = new NumberRow();
                 numberRow.row = "" + row;
-                var cell = ws.ReadFromCell("B" + row);
+
+                if (row % 100 == 0)
+                    ws.WriteToCell("E1", "Lette " + row + " righe");
+
+
+              var cell = ws.ReadFromCell("B" + row);
                 if (cell == null) {
                     List<string> resp = await bpg.FilterNumbers(filterInput);
                     toBeDeleted.AddRange(resp);
@@ -53,7 +64,7 @@ namespace Merlino
                 numberRow.number = ws.ReadFromCell("B" + row).ToString();
                 filterInput.number_list.Add(numberRow);
 
-                if (row % 1000 == 0)
+                if (row % 100000 == 0)
                 {
                     List<string> resp = await bpg.FilterNumbers(filterInput);
                     toBeDeleted.AddRange(resp);

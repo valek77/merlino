@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -17,7 +18,15 @@ namespace Merlino
 
         public BPGClient()
         {
-            client = new HttpClient();
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls;
+
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true
+            };
+
+            client = new HttpClient(handler);
             prefs = Preferences.LoadPreferences();
             //   Login(prefs.BpgUsername, prefs.BpgPassword);
         }
@@ -26,6 +35,9 @@ namespace Merlino
         {
 
             var request = new HttpRequestMessage(HttpMethod.Post, prefs.BpgUrl);
+
+          
+
 
             var requestBody = new
             {
