@@ -64,7 +64,7 @@ namespace Merlino
                 numberRow.number = ws.ReadFromCell("B" + row).ToString();
                 filterInput.number_list.Add(numberRow);
 
-                if (row % 100000 == 0)
+                if (row % 5000 == 0)
                 {
                     List<string> resp = await bpg.FilterNumbers(filterInput);
                     toBeDeleted.AddRange(resp);
